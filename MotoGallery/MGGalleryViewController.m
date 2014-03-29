@@ -7,22 +7,36 @@
 //
 
 #import "MGGalleryViewController.h"
+#import "MGPhoto.h"
 
 @interface MGGalleryViewController ()
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) NSMutableArray *photos;
 @end
 
 @implementation MGGalleryViewController
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    self.photos = [NSMutableArray array];
+    [self loadImages];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)loadImages {
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    
+    [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                           usingBlock:^(ALAssetsGroup *group, BOOL *stop)
+    {
+        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            MGPhoto *photo = [MGPhoto createWithAsset:result];
+            [self.photos addObject:photo];
+        }];
+        
+    } failureBlock:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 @end

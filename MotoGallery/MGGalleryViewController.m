@@ -8,10 +8,11 @@
 
 #import "MGGalleryViewController.h"
 #import "MGCollectionViewCell.h"
+#import "MGPhoto.h"
 
 @interface MGGalleryViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray *testPhotos;
+@property (nonatomic) NSMutableArray *photos;
 @end
 
 @implementation MGGalleryViewController
@@ -23,19 +24,35 @@
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"MGCollectionViewCell" bundle: nil] forCellWithReuseIdentifier: @"MGCell"];
 
-    //set up datasource
-    self.testPhotos = [NSArray arrayWithObjects:@"grumpycat1.jpg", @"grumpycat2.jpg", nil];
+    self.photos = [NSMutableArray array];
+    [self loadImages];
+}
+
+- (void)loadImages {
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    
+    [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                           usingBlock:^(ALAssetsGroup *group, BOOL *stop)
+     {
+         [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+             MGPhoto *photo = [MGPhoto createWithAsset:result];
+             [self.photos addObject:photo];
+         }];
+         
+     } failureBlock:^(NSError *error) {
+         NSLog(@"%@", error);
+     }];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.testPhotos.count;
+    return self.photos.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"MGCell";
 
     MGCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    UIImage *testImage = [UIImage imageNamed:[self.testPhotos objectAtIndex:indexPath.row]];
+    UIImage *testImage = [UIImage imageNamed:[self.photos objectAtIndex:indexPath.row]];
     cell.imageView.image = testImage;
     return cell;
 }

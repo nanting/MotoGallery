@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3119A17D18E7821900ABC86A /* MGCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3119A17C18E7821900ABC86A /* MGCollectionViewCell.m */; };
 		3119A17F18E7823B00ABC86A /* MGCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3119A17E18E7823B00ABC86A /* MGCollectionViewCell.xib */; };
+		3119A18718E7944300ABC86A /* MGPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 3119A18618E7944300ABC86A /* MGPhoto.m */; };
 		D27D863418E7633D0086089C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27D863318E7633D0086089C /* Foundation.framework */; };
 		D27D863618E7633D0086089C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27D863518E7633D0086089C /* CoreGraphics.framework */; };
 		D27D863818E7633D0086089C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D27D863718E7633D0086089C /* UIKit.framework */; };
@@ -42,6 +43,8 @@
 		3119A17B18E7821900ABC86A /* MGCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCollectionViewCell.h; sourceTree = "<group>"; };
 		3119A17C18E7821900ABC86A /* MGCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCollectionViewCell.m; sourceTree = "<group>"; };
 		3119A17E18E7823B00ABC86A /* MGCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MGCollectionViewCell.xib; sourceTree = "<group>"; };
+		3119A18518E7944300ABC86A /* MGPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGPhoto.h; sourceTree = "<group>"; };
+		3119A18618E7944300ABC86A /* MGPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGPhoto.m; sourceTree = "<group>"; };
 		D27D863018E7633D0086089C /* MotoGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotoGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D27D863318E7633D0086089C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D27D863518E7633D0086089C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,6 +135,8 @@
 		D27D863B18E7633D0086089C /* MotoGallery */ = {
 			isa = PBXGroup;
 			children = (
+				3119A18518E7944300ABC86A /* MGPhoto.h */,
+				3119A18618E7944300ABC86A /* MGPhoto.m */,
 				3119A18018E7867100ABC86A /* Resources */,
 				D27D866818E764FB0086089C /* MGGalleryViewController.h */,
 				D27D866918E764FB0086089C /* MGGalleryViewController.m */,
@@ -277,6 +282,7 @@
 			files = (
 				D27D864618E7633D0086089C /* MGAppDelegate.m in Sources */,
 				D27D864918E7633D0086089C /* MotoGallery.xcdatamodeld in Sources */,
+				3119A18718E7944300ABC86A /* MGPhoto.m in Sources */,
 				D27D864218E7633D0086089C /* main.m in Sources */,
 				3119A17D18E7821900ABC86A /* MGCollectionViewCell.m in Sources */,
 				D27D866B18E764FB0086089C /* MGGalleryViewController.m in Sources */,

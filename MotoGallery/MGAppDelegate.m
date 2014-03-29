@@ -7,6 +7,7 @@
 //
 
 #import "MGAppDelegate.h"
+#import "MGGalleryViewController.h"
 
 @implementation MGAppDelegate
 
@@ -17,7 +18,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+
+    MGGalleryViewController *galleryVC = [[MGGalleryViewController alloc] init];
+    self.window.rootViewController = galleryVC;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

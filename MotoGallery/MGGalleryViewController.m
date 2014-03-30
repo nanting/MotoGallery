@@ -32,12 +32,12 @@
     ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
     
     [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
-                           usingBlock:^(ALAssetsGroup *group, BOOL *stop)
-     {
+                           usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
          [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
              MGPhoto *photo = [MGPhoto createWithAsset:result];
              [self.photos addObject:photo];
          }];
+         [self.collectionView reloadData];
          
      } failureBlock:^(NSError *error) {
          NSLog(@"%@", error);
@@ -52,8 +52,9 @@
     static NSString *identifier = @"MGCell";
 
     MGCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    UIImage *testImage = [UIImage imageNamed:[self.photos objectAtIndex:indexPath.row]];
-    cell.imageView.image = testImage;
+
+    MGPhoto *photo = [self.photos objectAtIndex:indexPath.row];
+    cell.imageView.image = photo.thumbnail;
     return cell;
 }
 
